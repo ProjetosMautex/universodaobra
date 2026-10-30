@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AUTHORS } from '../../data/authors';
+---
+
+<BaseLayout
+  title="Equipe Editorial — Universo da Obra"
+  description="Conheça os autores e especialistas responsáveis pelos guias, comparativos e conteúdos do Universo da Obra."
+>
+  <section class="page-header">
+    <div class="container-narrow">
+      <span class="page-header__eyebrow">Institucional</span>
+      <h1 class="page-header__title">Nossa Equipe Editorial</h1>
+      <p class="page-header__lead">
+        Conheça os especialistas técnicos e redatores responsáveis por produzir informações claras,
+        pesquisas detalhadas e orientações práticas no Universo da Obra.
+      </p>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="container-narrow">
+      <div class="authors-list">
+        {AUTHORS.map((author) => (
+          <div class="author-item">
+            <div class="author-item__avatar-box">
+              <img
+                src={author.image}
+                alt={author.imageAlt}
+                class="author-item__avatar"
+                width="120"
+                height="120"
+                loading="lazy"
+              />
+              <span class="author-item__role">{author.role}</span>
+            </div>
+            <div class="author-item__content">
+              <h2 class="author-item__name">
+                <a href={`/autores/${author.slug}/`}>{author.name}</a>
+              </h2>
+              <p class="author-item__specialty">{author.specialty}</p>
+              <p class="author-item__area">
+                <strong>Área principal:</strong> {author.mainArea}
+              </p>
+              <p class="author-item__desc">{author.portalFunction}</p>
+              <a href={`/autores/${author.slug}/`} class="btn btn-secondary">
+                Ver perfil completo e pautas →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .authors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .author-item {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .author-item {
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+      padding: 2.25rem 2rem;
+      gap: 2rem;
+    }
+  }
+
+  .author-item__avatar-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .author-item__avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-tertiary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .author-item__role {
+    background-color: var(--color-tertiary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+  }
+
+  .author-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .author-item__name {
+    font-size: 1.45rem;
+    margin: 0;
+  }
+
+  .author-item__name a {
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .author-item__name a:hover {
+    color: var(--color-secondary);
+  }
+
+  .author-item__specialty {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin: 0;
+  }
+
+  .author-item__area {
+    font-size: 0.90625rem;
+    color: var(--color-text);
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius-sm);
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .author-item__desc {
+    font-size: 0.96875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0 0 1rem;
+  }
+</style>

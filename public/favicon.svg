@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" role="img" aria-label="Símbolo Universo da Obra">
+  <!-- Base sólida azul-petróleo -->
+  <rect width="64" height="64" rx="14" fill="#173B46" />
+  <!-- Estrutura interna arquitetônica (pilar/planta) -->
+  <path d="M18 33V48C18 49.1046 18.8954 50 20 50H44C45.1046 50 46 49.1046 46 48V33" stroke="#F5F3EE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Vão central / fundação -->
+  <path d="M27 50V37C27 35.8954 27.8954 35 29 35H35C36.1046 35 37 35.8954 37 37V50" stroke="#F5F3EE" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Cumeeira / Telhado em laranja de construção -->
+  <path d="M11 33L32 14L53 33" stroke="#E88735" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Ponto de nível superior -->
+  <circle cx="32" cy="24" r="2.5" fill="#E88735" />
+</svg>

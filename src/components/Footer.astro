@@ -1,0 +1,348 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <!-- Área 1: Logo e apresentação -->
+      <div class="site-footer__brand">
+        <a href="/" class="footer-logo" aria-label="Universo da Obra — Página inicial">
+          <svg
+            class="footer-logo__symbol"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 64 64"
+            width="42"
+            height="42"
+            fill="none"
+            aria-hidden="true"
+          >
+            <rect width="64" height="64" rx="14" fill="#235362" />
+            <path
+              d="M18 33V48C18 49.1046 18.8954 50 20 50H44C45.1046 50 46 49.1046 46 48V33"
+              stroke="#F5F3EE"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M27 50V37C27 35.8954 27.8954 35 29 35H35C36.1046 35 37 35.8954 37 37V50"
+              stroke="#F5F3EE"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M11 33L32 14L53 33"
+              stroke="#E88735"
+              stroke-width="5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <circle cx="32" cy="24" r="2.5" fill="#E88735" />
+          </svg>
+          <span class="footer-logo__name">{SITE_CONFIG.name}</span>
+        </a>
+        <p class="site-footer__tagline">
+          {SITE_CONFIG.tagline}
+        </p>
+      </div>
+
+      <!-- Área 2: Informações de contato (NAP) -->
+      <div class="site-footer__contact">
+        <h2 class="site-footer__heading">Informações de Contato</h2>
+        <ul class="site-footer__nap">
+          <li class="site-footer__nap-item">
+            <span class="site-footer__nap-label">Projeto:</span>
+            <span class="site-footer__nap-val">{SITE_CONFIG.name}</span>
+          </li>
+          <li class="site-footer__nap-item">
+            <span class="site-footer__nap-label">Responsável:</span>
+            <span class="site-footer__nap-val">{SITE_CONFIG.responsible}</span>
+          </li>
+          <li class="site-footer__nap-item">
+            <span class="site-footer__nap-label">E-mail:</span>
+            <a href={`mailto:${SITE_CONFIG.contactEmail}`} class="site-footer__email">
+              {SITE_CONFIG.contactEmail}
+            </a>
+          </li>
+          <li class="site-footer__nap-item">
+            <span class="site-footer__nap-label">Telefone:</span>
+            <a href={`tel:+${SITE_CONFIG.contactPhoneRaw}`} class="site-footer__phone">
+              {SITE_CONFIG.contactPhone}
+            </a>
+            <span class="site-footer__nap-hint">({SITE_CONFIG.contactHours})</span>
+          </li>
+          <li class="site-footer__nap-item">
+            <span class="site-footer__nap-label">Endereço:</span>
+            <address class="site-footer__address">
+              {SITE_CONFIG.address.formatted}
+            </address>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Área 3: Navegação -->
+      <div class="site-footer__nav">
+        <h2 class="site-footer__heading">Navegação</h2>
+        <nav aria-label="Navegação do rodapé">
+          <ul class="site-footer__list">
+            {SITE_CONFIG.navLinks.map((link) => (
+              <li>
+                <a href={link.href} class="site-footer__link">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Faixa inferior do rodapé -->
+    <div class="site-footer__bottom">
+      <p class="site-footer__copyright">
+        © {currentYear} {SITE_CONFIG.name}. Todos os direitos reservados.
+      </p>
+
+      <div class="site-footer__legal">
+        <a href="/politica-de-privacidade/" class="site-footer__legal-link">
+          Política de Privacidade
+        </a>
+        <span class="site-footer__divider" aria-hidden="true">•</span>
+        <a href="/termos-de-uso/" class="site-footer__legal-link">
+          Termos de Uso
+        </a>
+        <span class="site-footer__divider" aria-hidden="true">•</span>
+        <button
+          type="button"
+          id="open-cookie-preferences-btn"
+          class="site-footer__cookie-btn"
+        >
+          Preferências de Cookies
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const setupCookieTrigger = () => {
+    const btn = document.getElementById('open-cookie-preferences-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('universodaobra:open-cookies'));
+    });
+  };
+
+  setupCookieTrigger();
+  document.addEventListener('astro:page-load', setupCookieTrigger);
+</script>
+
+<style>
+  .site-footer {
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+    padding: 3.5rem 0 2rem;
+    margin-top: auto;
+    border-top: 4px solid var(--color-secondary);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--color-white);
+    margin-bottom: 0.85rem;
+  }
+
+  .footer-logo:hover {
+    color: var(--color-white);
+  }
+
+  .footer-logo__name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+  }
+
+  .site-footer__tagline {
+    color: rgba(245, 243, 238, 0.88);
+    font-size: 0.96875rem;
+    max-width: 36ch;
+    line-height: 1.6;
+  }
+
+  .site-footer__heading {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-white);
+    margin-bottom: 0.85rem;
+  }
+
+  .site-footer__nap {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.9375rem;
+    color: rgba(245, 243, 238, 0.9);
+  }
+
+  .site-footer__nap-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    line-height: 1.45;
+  }
+
+  .site-footer__nap-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary);
+    font-weight: 700;
+  }
+
+  .site-footer__nap-val {
+    color: var(--color-white);
+  }
+
+  .site-footer__nap-hint {
+    font-size: 0.8125rem;
+    color: rgba(245, 243, 238, 0.7);
+  }
+
+  .site-footer__address {
+    font-style: normal;
+    color: rgba(245, 243, 238, 0.92);
+  }
+
+  .site-footer__phone {
+    color: var(--color-white);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .site-footer__phone:hover {
+    color: var(--color-secondary);
+  }
+
+  .site-footer__email {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-secondary);
+    font-weight: 700;
+    font-size: 0.96875rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    word-break: break-all;
+  }
+
+  .site-footer__email:hover {
+    color: var(--color-white);
+  }
+
+  .site-footer__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .site-footer__link {
+    color: rgba(245, 243, 238, 0.9);
+    text-decoration: none;
+    font-size: 0.96875rem;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+
+  .site-footer__link:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+  }
+
+  .site-footer__bottom {
+    border-top: 1px solid rgba(245, 243, 238, 0.16);
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .site-footer__copyright {
+    color: rgba(245, 243, 238, 0.82);
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .site-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.75rem;
+  }
+
+  .site-footer__legal-link {
+    color: rgba(245, 243, 238, 0.9);
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .site-footer__legal-link:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+  }
+
+  .site-footer__divider {
+    color: rgba(245, 243, 238, 0.35);
+    font-size: 0.75rem;
+  }
+
+  .site-footer__cookie-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: rgba(245, 243, 238, 0.9);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .site-footer__cookie-btn:hover {
+    color: var(--color-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1.35fr 0.75fr;
+      gap: 2.5rem;
+    }
+
+    .site-footer__bottom {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+</style>

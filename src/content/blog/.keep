@@ -1,0 +1,4 @@
+# Pasta de Artigos do Blog (Astro Content Collections)
+
+Coloque aqui os arquivos `.md` ou `.mdx` dos artigos publicados futuramente.
+Enquanto não houver artigos publicados, a página `/blog/` apresentará automaticamente o estado vazio informativo.

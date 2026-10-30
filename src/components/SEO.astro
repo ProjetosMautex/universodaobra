@@ -1,0 +1,63 @@
+---
+import { SITE_CONFIG } from '../config/site';
+
+export interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = SITE_CONFIG.description,
+  canonicalPath = Astro.url.pathname,
+  ogType = 'website',
+  ogImage = '/images/brand/logo-horizontal.svg',
+  noindex = false,
+} = Astro.props;
+
+const normalizedPath = canonicalPath.endsWith('/') || canonicalPath.includes('.')
+  ? canonicalPath
+  : `${canonicalPath}/`;
+
+const canonicalUrl = new URL(normalizedPath, SITE_CONFIG.domain).toString();
+const ogImageUrl = new URL(ogImage, SITE_CONFIG.domain).toString();
+
+const fullTitle =
+  title === SITE_CONFIG.name || title.includes(SITE_CONFIG.name)
+    ? title
+    : `${title} | ${SITE_CONFIG.name}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <meta name="robots" content="index, follow" />
+)}
+
+<!-- Open Graph / Redes Sociais -->
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content={ogType} />
+<meta property="og:site_name" content={SITE_CONFIG.name} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+
+<!-- Twitter / Compartilhamento -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+<meta name="theme-color" content="#173B46" />

@@ -1,0 +1,419 @@
+/* ==========================================================================
+   Componentes de Conversão — Linha Impermeabilizantes
+   ========================================================================== */
+
+@keyframes impFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes impZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---------- Banner do Meio (BunnerDoMeioimpermeabilizante) ---------- */
+
+.imp-mid-banner {
+  margin: 3rem auto;
+  max-width: 780px;
+  width: 100%;
+}
+
+.imp-mid-banner__heading {
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+  font-weight: 900;
+  color: var(--color-primary, #173B46);
+  margin-bottom: 1.25rem;
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.imp-mid-banner__box {
+  width: 100%;
+  background-color: var(--color-tertiary, #F5F3EE);
+  border-radius: var(--radius-lg, 14px);
+  border: 2px dashed rgba(23, 59, 70, 0.35);
+  padding: 1.75rem 1.5rem;
+  color: var(--color-text, #263238);
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(23, 59, 70, 0.05));
+}
+
+@media (min-width: 768px) {
+  .imp-mid-banner__box {
+    padding: 2.25rem 2.5rem;
+  }
+}
+
+.imp-mid-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.15rem;
+}
+
+.imp-mid-banner__copy {
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.125rem);
+  color: var(--color-text, #263238);
+  font-weight: 500;
+  max-width: 60ch;
+  margin: 0 auto;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.imp-mid-banner__copy strong {
+  color: var(--color-primary, #173B46);
+  font-weight: 800;
+}
+
+.imp-mid-banner__highlight {
+  color: var(--color-primary, #173B46);
+  font-weight: 800;
+}
+
+.imp-mid-banner__form-wrap {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 0.35rem;
+}
+
+.imp-mid-banner__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.imp-mid-banner__input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background-color: var(--color-white, #FFFFFF);
+  color: var(--color-text, #263238);
+  border: 1.5px solid var(--color-border, #CBD5E1);
+  border-radius: var(--radius-sm, 6px);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.imp-mid-banner__input::placeholder {
+  color: var(--color-text-secondary, #647078);
+}
+
+.imp-mid-banner__input:focus {
+  outline: none;
+  border-color: var(--color-secondary, #E88735);
+  box-shadow: 0 0 0 3px rgba(232, 135, 53, 0.25);
+}
+
+.imp-mid-banner__button {
+  width: 100%;
+  background-color: var(--color-secondary, #E88735);
+  color: #112228;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm, 6px);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(23, 59, 70, 0.08));
+  transition: background-color 160ms ease, color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+
+.imp-mid-banner__button:hover:not(:disabled) {
+  background-color: var(--color-secondary-hover, #CF7122);
+  color: var(--color-white, #FFFFFF);
+}
+
+.imp-mid-banner__button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Estado de Sucesso do Banner do Meio */
+.imp-mid-banner--success {
+  width: 100%;
+  max-width: 780px;
+  background-color: #F0FDF4;
+  border: 1.5px solid #BBF7D0;
+  border-radius: var(--radius-lg, 14px);
+  margin: 3rem auto;
+  padding: 2rem 1.5rem;
+  animation: impFadeIn 400ms ease forwards;
+}
+
+.imp-mid-banner__success-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.imp-mid-banner__success-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #22C55E;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.25);
+}
+
+.imp-mid-banner__success-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #14532D;
+  margin-bottom: 0.4rem;
+}
+
+.imp-mid-banner__success-text {
+  color: #166534;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.imp-mid-banner__spam-alert {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm, 6px);
+  max-width: 540px;
+}
+
+.imp-mid-banner__spam-alert p {
+  color: #991B1B;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+/* ---------- Exit Intent Popup (ExitIntentPopupimpermeabilizante) ---------- */
+
+.imp-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(15, 41, 49, 0.82);
+  backdrop-filter: blur(4px);
+  animation: impFadeIn 260ms ease forwards;
+}
+
+.imp-popup-modal {
+  background-color: var(--color-white, #FFFFFF);
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+  width: 100%;
+  max-width: 510px;
+  position: relative;
+  overflow: hidden;
+  border-top: 5px solid var(--color-secondary, #E88735);
+  animation: impZoomIn 280ms ease forwards;
+}
+
+.imp-popup__close-btn {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(23, 59, 70, 0.06);
+  color: var(--color-text-muted, #526068);
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.imp-popup__close-btn:hover {
+  background-color: rgba(23, 59, 70, 0.14);
+  color: var(--color-primary, #173B46);
+}
+
+.imp-popup__body {
+  padding: 2.25rem 1.75rem 2rem;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .imp-popup__body {
+    padding: 2.5rem 2.5rem 2.25rem;
+  }
+}
+
+.imp-popup__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary, #173B46);
+  background-color: var(--color-secondary-soft, #FDF3EA);
+  border: 1px solid rgba(232, 135, 53, 0.35);
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+}
+
+.imp-popup__title {
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 1.9rem);
+  font-weight: 800;
+  color: var(--color-primary, #173B46);
+  margin-bottom: 0.85rem;
+  line-height: 1.25;
+}
+
+.imp-popup__desc {
+  color: var(--color-text-muted, #526068);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.65rem;
+}
+
+.imp-popup__desc strong {
+  color: var(--color-primary, #173B46);
+}
+
+.imp-popup__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.imp-popup__input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm, 6px);
+  border: 1.5px solid var(--color-border, #CBD5E1);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 1rem;
+  color: var(--color-text, #263238);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.imp-popup__input:focus {
+  outline: none;
+  border-color: var(--color-secondary, #E88735);
+  box-shadow: 0 0 0 3px rgba(232, 135, 53, 0.22);
+}
+
+.imp-popup__submit {
+  width: 100%;
+  background-color: var(--color-primary, #173B46);
+  color: var(--color-white, #FFFFFF);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-weight: 800;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.95rem 1.25rem;
+  border: none;
+  border-radius: var(--radius-sm, 6px);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 2px 6px rgba(23, 59, 70, 0.12));
+  transition: background-color 160ms ease, opacity 160ms ease;
+}
+
+.imp-popup__submit:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #0F2931);
+}
+
+.imp-popup__submit:disabled {
+  background-color: #94A3B8;
+  cursor: not-allowed;
+}
+
+.imp-popup__dismiss-wrap {
+  margin-top: 1.25rem;
+  transition: opacity 400ms ease;
+}
+
+.imp-popup__dismiss-wrap--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.imp-popup__dismiss-wrap--visible {
+  opacity: 1;
+}
+
+.imp-popup__dismiss-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary, #647078);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 160ms ease;
+}
+
+.imp-popup__dismiss-btn:hover {
+  color: var(--color-primary, #173B46);
+}
+
+/* Estado de Sucesso do Popup */
+.imp-popup__success {
+  padding: 2.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.imp-popup__success-icon {
+  width: 64px;
+  height: 64px;
+  background-color: #DCFCE7;
+  color: #16A34A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imp-popup__success-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-primary, #173B46);
+  margin: 0;
+}
+
+.imp-popup__success-text {
+  color: var(--color-text-muted, #526068);
+  font-size: 1rem;
+  margin: 0;
+}

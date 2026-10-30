@@ -1,0 +1,410 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AUTHORS, type AuthorItem } from '../../data/authors';
+
+export function getStaticPaths() {
+  return AUTHORS.map((author) => ({
+    params: { slug: author.slug },
+    props: { author },
+  }));
+}
+
+interface Props {
+  author: AuthorItem;
+}
+
+const { author } = Astro.props;
+---
+
+<BaseLayout
+  title={`${author.name} — ${author.specialty} | Universo da Obra`}
+  description={`Perfil editorial de ${author.name}, ${author.role} no Universo da Obra. ${author.specialty}. Conheça sua atuação, temas e critérios editoriais.`}
+>
+  <section class="author-header">
+    <div class="container-narrow">
+      <nav class="breadcrumb" aria-label="Navegação estrutural">
+        <ol>
+          <li><a href="/">Início</a></li>
+          <li><span class="sep" aria-hidden="true">/</span></li>
+          <li><a href="/sobre/">Sobre</a></li>
+          <li><span class="sep" aria-hidden="true">/</span></li>
+          <li aria-current="page">{author.name}</li>
+        </ol>
+      </nav>
+
+      <div class="author-hero">
+        <div class="author-hero__avatar-wrap">
+          <img
+            src={author.image}
+            alt={author.imageAlt}
+            class="author-hero__avatar"
+            width="160"
+            height="160"
+          />
+          <span class="author-hero__role-badge">{author.role}</span>
+        </div>
+
+        <div class="author-hero__info">
+          <span class="author-hero__eyebrow">Equipe Editorial</span>
+          <h1 class="author-hero__title">{author.name}</h1>
+          <p class="author-hero__specialty">{author.specialty}</p>
+
+          <div class="author-hero__area">
+            <span class="author-hero__area-label">Área Principal de Cobertura:</span>
+            <strong>{author.mainArea}</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="container-narrow">
+      <div class="prose-card prose-content">
+        <!-- Função no portal -->
+        <h2>Função no portal</h2>
+        <p class="lead-paragraph">{author.portalFunction}</p>
+
+        <!-- O que ele faz -->
+        <h2>O que {author.name.split(' ')[0]} faz</h2>
+        <ul class="author-list author-list--tasks">
+          {author.whatHeDoes.map((task) => (
+            <li>{task}</li>
+          ))}
+        </ul>
+
+        <hr class="section-divider" />
+
+        <!-- Perfil e experiência editorial -->
+        <h2>Perfil e experiência editorial</h2>
+        <p>{author.editorialProfile}</p>
+
+        <hr class="section-divider" />
+
+        <!-- Temas pelos quais será responsável -->
+        <h2>Temas pelos quais será responsável</h2>
+        <p>
+          Principais pautas e categorias cobertas por {author.name.split(' ')[0]} no portal Universo da Obra:
+        </p>
+
+        <div class="topics-grid">
+          {author.topics.map((topic) => (
+            <div class="topic-card">
+              <span class="topic-card__icon" aria-hidden="true">✓</span>
+              <span class="topic-card__text">{topic}</span>
+            </div>
+          ))}
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- Estilo de escrita -->
+        <h2>Estilo de escrita</h2>
+        <div class="style-box">
+          <div class="style-box__icon" aria-hidden="true">✍️</div>
+          <div class="style-box__content">
+            <strong>Diretriz Editorial:</strong>
+            <p>{author.writingStyle}</p>
+          </div>
+        </div>
+
+        <div class="author-footer-cta">
+          <div class="author-footer-cta__text">
+            <h3>Conheça mais sobre o portal</h3>
+            <p>
+              Entenda nosso compromisso com a transparência, critérios de análise e metodologia de conteúdo.
+            </p>
+          </div>
+          <div class="author-footer-cta__actions">
+            <a href="/sobre/" class="btn btn-secondary">Sobre o Universo da Obra</a>
+            <a href="/contato/" class="btn btn-primary">Fale Conosco</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .author-header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 2.5rem 0 3.5rem;
+    border-bottom: 4px solid var(--color-secondary);
+  }
+
+  .breadcrumb {
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  .breadcrumb a {
+    color: rgba(245, 243, 238, 0.8);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+  }
+
+  .breadcrumb .sep {
+    color: rgba(245, 243, 238, 0.4);
+  }
+
+  .breadcrumb li[aria-current="page"] {
+    color: var(--color-white);
+    font-weight: 600;
+  }
+
+  .author-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .author-hero {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      gap: 2.25rem;
+    }
+  }
+
+  .author-hero__avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .author-hero__avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--color-white);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 640px) {
+    .author-hero__avatar {
+      width: 160px;
+      height: 160px;
+    }
+  }
+
+  .author-hero__role-badge {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.85rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .author-hero__eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-secondary);
+    margin-bottom: 0.35rem;
+  }
+
+  .author-hero__title {
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    color: var(--color-white);
+    margin: 0 0 0.4rem;
+    line-height: 1.15;
+  }
+
+  .author-hero__specialty {
+    font-size: 1.1rem;
+    color: rgba(245, 243, 238, 0.92);
+    margin: 0 0 1.25rem;
+  }
+
+  .author-hero__area {
+    background-color: rgba(245, 243, 238, 0.12);
+    border: 1px solid rgba(245, 243, 238, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 0.65rem 1rem;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.9375rem;
+  }
+
+  .author-hero__area-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-secondary);
+  }
+
+  .lead-paragraph {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .author-list {
+    padding-left: 1.25rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .author-list li {
+    margin-bottom: 0.65rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin: 1.25rem 0 1.75rem;
+  }
+
+  @media (min-width: 600px) {
+    .topics-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .topic-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition-fast);
+  }
+
+  .topic-card:hover {
+    border-color: var(--color-primary);
+  }
+
+  .topic-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #e6f4ea;
+    color: #137333;
+    font-weight: 800;
+    font-size: 0.8125rem;
+    flex-shrink: 0;
+  }
+
+  .topic-card__text {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .style-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background-color: var(--color-tertiary);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-secondary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.25rem 0 2rem;
+  }
+
+  .style-box__icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .style-box__content strong {
+    display: block;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .style-box__content p {
+    margin: 0;
+    font-size: 0.96875rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2.25rem 0;
+  }
+
+  .author-footer-cta {
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 680px) {
+    .author-footer-cta {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .author-footer-cta__text h3 {
+    font-size: 1.15rem;
+    margin: 0 0 0.35rem;
+    color: var(--color-primary);
+  }
+
+  .author-footer-cta__text p {
+    margin: 0;
+    font-size: 0.90625rem;
+    color: var(--color-text-muted);
+  }
+
+  .author-footer-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+</style>

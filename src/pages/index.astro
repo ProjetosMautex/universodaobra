@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ArticleGrid from '../components/ArticleGrid.astro';
+import { DEMO_ARTICLES } from '../data/impermeabilizantearticles';
+---
+
+<BaseLayout
+  title="Universo da Obra — Portal de Construção e Reforma"
+  description="No Universo da Obra, você encontra guias, comparativos de produtos e orientações práticas para escolher materiais, ferramentas e soluções para construção e reforma."
+>
+  <Hero />
+
+  <!-- Seção de apresentação do portal -->
+  <section class="intro-section" aria-labelledby="intro-heading">
+    <div class="container-narrow intro-section__inner">
+      <span class="intro-section__eyebrow">Proposta Editorial</span>
+      <h2 id="intro-heading" class="intro-section__title">
+        Informação prática para fazer escolhas melhores
+      </h2>
+      <p class="intro-section__text">
+        Da escolha do impermeabilizante aos materiais e ferramentas usados no dia a dia, reunimos
+        informações para ajudar você a entender as opções disponíveis, comparar produtos e planejar
+        seus projetos com mais segurança.
+      </p>
+    </div>
+  </section>
+
+  <!-- Seção com seis cards de artigos -->
+  <ArticleGrid
+    title="Explore nossos conteúdos"
+    subtitle="Guias e informações para ajudar você em cada etapa da obra."
+    articles={DEMO_ARTICLES}
+    showDemoNotice={true}
+  />
+</BaseLayout>
+
+<style>
+  .intro-section {
+    padding: 4rem 0;
+    background-color: var(--color-white);
+  }
+
+  .intro-section__inner {
+    text-align: center;
+  }
+
+  .intro-section__eyebrow {
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    background-color: var(--color-tertiary);
+    padding: 0.25rem 0.7rem;
+    border-radius: 4px;
+    margin-bottom: 0.9rem;
+  }
+
+  .intro-section__title {
+    margin-bottom: 1rem;
+  }
+
+  .intro-section__text {
+    font-size: clamp(1.05rem, 1vw + 0.5rem, 1.1875rem);
+    color: var(--color-text-muted);
+    line-height: 1.75;
+    max-width: 64ch;
+    margin-inline: auto;
+  }
+</style>

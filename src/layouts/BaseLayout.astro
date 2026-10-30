@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import SEO, { type Props as SEOProps } from '../components/SEO.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent';
+
+export interface Props extends SEOProps {}
+
+const seoProps = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <SEO {...seoProps} />
+  </head>
+  <body>
+    <a href="#conteudo-principal" class="skip-link">
+      Pular para o conteúdo principal
+    </a>
+
+    <Header />
+
+    <main id="conteudo-principal" tabindex="-1">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <CookieConsent client:load />
+  </body>
+</html>

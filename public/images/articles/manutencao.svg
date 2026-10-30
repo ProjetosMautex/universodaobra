@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 375" width="600" height="375" fill="none">
+  <rect width="600" height="375" fill="#F5F3EE" />
+  <rect x="40" y="40" width="520" height="295" rx="12" fill="#FFFFFF" stroke="#E2E7E8" stroke-width="2" />
+  <!-- Casa com check de manutenção preventiva -->
+  <path d="M165 190L300 90L435 190" stroke="#173B46" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M205 165V275H395V165" stroke="#173B46" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="300" cy="212" r="38" fill="#E88735" />
+  <path d="M282 212L295 225L320 198" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

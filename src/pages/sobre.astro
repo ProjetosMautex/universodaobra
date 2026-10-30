@@ -1,0 +1,540 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config/site';
+import { AUTHORS } from '../data/authors';
+---
+
+<BaseLayout
+  title="Sobre o Universo da Obra"
+  description="Informação e orientação para construir, reformar e cuidar melhor da sua casa. Conheça o que somos, nossa proposta editorial e nosso compromisso de transparência."
+>
+  <section class="page-header">
+    <div class="container-narrow">
+      <span class="page-header__eyebrow">Institucional</span>
+      <h1 class="page-header__title">Sobre o Universo da Obra</h1>
+      <p class="page-header__lead">
+        Informação e orientação para construir, reformar e cuidar melhor da sua casa.
+      </p>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="container-narrow">
+      <div class="prose-card prose-content">
+        <!-- Introdução -->
+        <p class="lead-text">
+          O <strong>Universo da Obra</strong> nasceu com um propósito simples: reunir informações
+          úteis e orientações práticas para ajudar pessoas a fazerem escolhas melhores em projetos de
+          construção, reforma e manutenção residencial.
+        </p>
+
+        <p>
+          Sabemos que construir ou reformar envolve muitas decisões. É preciso escolher materiais,
+          comparar produtos, entender suas aplicações e encontrar soluções adequadas para cada
+          necessidade. Nem sempre é fácil encontrar informações claras e organizadas para tomar essas
+          decisões com segurança.
+        </p>
+
+        <p class="highlight-quote">
+          É justamente nesse cenário que queremos ajudar.
+        </p>
+
+        <hr class="section-divider" />
+
+        <!-- O que somos -->
+        <h2>O que somos</h2>
+        <p>
+          O <strong>Universo da Obra</strong> é um portal independente de conteúdo sobre construção,
+          reforma, materiais e soluções para o dia a dia da casa.
+        </p>
+        <p>
+          Nosso objetivo é transformar pesquisas e dúvidas comuns em conteúdos acessíveis, organizados
+          e úteis, ajudando nossos leitores a compreender melhor os produtos disponíveis e as
+          alternativas existentes no mercado.
+        </p>
+        <p>
+          Mais do que reunir informações, queremos facilitar o caminho entre ter uma dúvida e encontrar
+          uma solução.
+        </p>
+
+        <hr class="section-divider" />
+
+        <!-- O que você encontra aqui -->
+        <h2>O que você encontra aqui</h2>
+        <p>
+          Nosso conteúdo é organizado para acompanhar diferentes necessidades de quem constrói, reforma
+          ou cuida de um imóvel:
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-item__icon" aria-hidden="true">🧱</div>
+            <div class="feature-item__body">
+              <h3>Materiais e produtos</h3>
+              <p>
+                Informações sobre impermeabilizantes, tintas, revestimentos, ferramentas e outros
+                materiais utilizados em obras e reformas.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-item__icon" aria-hidden="true">🔍</div>
+            <div class="feature-item__body">
+              <h3>Guias de compra</h3>
+              <p>
+                Comparações e análises para ajudar a entender as características dos produtos, suas
+                diferenças e os pontos importantes antes de escolher.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-item__icon" aria-hidden="true">💡</div>
+            <div class="feature-item__body">
+              <h3>Dicas práticas</h3>
+              <p>
+                Orientações sobre aplicações, manutenção, cuidados e soluções para problemas comuns em
+                residências.
+              </p>
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-item__icon" aria-hidden="true">📐</div>
+            <div class="feature-item__body">
+              <h3>Construção e reforma</h3>
+              <p>
+                Conteúdos para quem deseja planejar melhor cada etapa de um projeto e conhecer as opções
+                disponíveis.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- Como produzimos nosso conteúdo -->
+        <h2>Como produzimos nosso conteúdo</h2>
+        <p>
+          Acreditamos que uma boa informação precisa ser clara, relevante e fácil de consultar.
+        </p>
+        <p>
+          Por isso, buscamos desenvolver conteúdos que:
+        </p>
+        <ul class="styled-list">
+          <li>Apresentem informações de maneira organizada e compreensível.</li>
+          <li>Expliquem características e diferenças entre produtos.</li>
+          <li>Considerem as necessidades reais de quem está pesquisando.</li>
+          <li>Ajudem o leitor a comparar alternativas antes de tomar uma decisão.</li>
+          <li>Sejam atualizados sempre que necessário.</li>
+        </ul>
+        <p>
+          Nosso compromisso é oferecer conteúdo informativo e útil, sem prometer resultados que dependem
+          das condições específicas de cada obra ou aplicação.
+        </p>
+
+        <hr class="section-divider" />
+
+        <!-- Equipe editorial — Universo da Obra -->
+        <h2>Equipe editorial — Universo da Obra</h2>
+        <p>
+          Nosso portal conta com redatores dedicados a áreas específicas da construção civil e manutenção
+          residencial, garantindo pesquisas criteriosas de produtos, análises técnicas e didática prática:
+        </p>
+
+        <div class="team-grid">
+          {AUTHORS.map((author) => (
+            <div class="team-card">
+              <div class="team-card__media">
+                <img
+                  src={author.image}
+                  alt={author.imageAlt}
+                  class="team-card__avatar"
+                  loading="lazy"
+                  width="130"
+                  height="130"
+                />
+                <span class="team-card__badge">{author.role}</span>
+              </div>
+              <div class="team-card__info">
+                <h3 class="team-card__name">
+                  <a href={`/autores/${author.slug}/`}>{author.name}</a>
+                </h3>
+                <p class="team-card__specialty">{author.specialty}</p>
+                <div class="team-card__area">
+                  <span class="team-card__area-label">Área principal:</span>
+                  <span>{author.mainArea}</span>
+                </div>
+                <p class="team-card__desc">{author.portalFunction}</p>
+                <div class="team-card__action">
+                  <a href={`/autores/${author.slug}/`} class="team-card__btn">
+                    Ver perfil e temas de {author.name.split(' ')[0]} →
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- Nossa independência e transparência -->
+        <h2>Nossa independência e transparência</h2>
+        <div class="transparency-box">
+          <p>
+            O Universo da Obra pode utilizar links de afiliados em alguns conteúdos.
+          </p>
+          <p>
+            Isso significa que, quando um leitor acessa determinados links e realiza uma compra, podemos
+            receber uma comissão, sem que isso represente necessariamente um custo adicional para ele.
+          </p>
+          <p>
+            Essa possibilidade de monetização ajuda a manter o projeto e produzir novos conteúdos.
+          </p>
+          <p>
+            A presença de links de afiliados não substitui a importância de apresentar informações úteis e
+            transparentes. Recomendamos que cada leitor avalie as características dos produtos, consulte as
+            especificações dos fabricantes e considere as necessidades específicas de seu projeto antes de
+            comprar.
+          </p>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- Nosso compromisso -->
+        <h2>Nosso compromisso</h2>
+        <p>
+          Queremos construir um espaço de referência para quem procura informações sobre construção,
+          reforma e cuidados com a casa.
+        </p>
+        <p>
+          Um portal que cresça com conteúdo relevante, organização e atenção às dúvidas dos leitores.
+        </p>
+        <p>
+          Acreditamos que boas decisões começam com boas informações.
+        </p>
+        <p class="manifesto-tagline">
+          <strong>Universo da Obra — conhecimento para fazer escolhas melhores em cada etapa da sua obra.</strong>
+        </p>
+
+        <!-- Entre em contato -->
+        <div class="contact-cta">
+          <h2>Entre em contato</h2>
+          <p>
+            Tem alguma dúvida, sugestão ou encontrou algo que podemos melhorar?
+            Será um prazer receber sua mensagem.
+          </p>
+          <p class="contact-cta__email">
+            <strong>E-mail:</strong>{' '}
+            <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a>
+          </p>
+          <div class="contact-cta__action">
+            <a href={`mailto:${SITE_CONFIG.contactEmail}`} class="btn btn-secondary">
+              Entre em contato conosco
+            </a>
+            <a href="/contato/" class="btn btn-primary">
+              Acessar página de contato
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead-text {
+    font-size: 1.15rem;
+    line-height: 1.75;
+    color: var(--color-primary);
+  }
+
+  .highlight-quote {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-secondary);
+    padding: 0.75rem 1.25rem;
+    background-color: var(--color-tertiary);
+    border-left: 4px solid var(--color-secondary);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 1.75rem 0;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2.25rem 0;
+  }
+
+  /* Equipe Editorial */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 1.75rem 0 2rem;
+  }
+
+  @media (min-width: 680px) {
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .team-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .team-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-primary);
+  }
+
+  .team-card__media {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .team-card__avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-tertiary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .team-card__badge {
+    background-color: var(--color-tertiary);
+    color: var(--color-primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+  }
+
+  .team-card__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .team-card__name {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .team-card__name a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .team-card__name a:hover {
+    color: var(--color-secondary);
+  }
+
+  .team-card__specialty {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin: 0 0 0.75rem;
+    line-height: 1.4;
+  }
+
+  .team-card__area {
+    font-size: 0.875rem;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.75rem;
+    margin-bottom: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+
+  .team-card__area-label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.15rem;
+  }
+
+  .team-card__desc {
+    font-size: 0.90625rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0 0 1.25rem;
+    flex-grow: 1;
+  }
+
+  .team-card__action {
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .team-card__btn {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .team-card__btn:hover {
+    color: var(--color-secondary);
+    transform: translateX(3px);
+  }
+
+  /* Grid de recursos */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background-color: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .feature-item__icon {
+    font-size: 1.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .feature-item__body h3 {
+    font-size: 1.0625rem;
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+    color: var(--color-primary);
+  }
+
+  .feature-item__body p {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  /* Lista customizada */
+  .styled-list {
+    padding-left: 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .styled-list li {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+
+  /* Caixa de transparência */
+  .transparency-box {
+    background-color: var(--color-tertiary);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1.5rem;
+    margin: 1.25rem 0;
+  }
+
+  .transparency-box p {
+    margin-bottom: 0.85rem;
+    line-height: 1.65;
+    font-size: 0.96875rem;
+  }
+
+  .transparency-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .manifesto-tagline {
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    background-color: var(--color-bg-alt);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    margin-top: 1.5rem;
+  }
+
+  /* Call to action de contato */
+  .contact-cta {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: 2.25rem 1.75rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .contact-cta h2 {
+    color: var(--color-white);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-cta p {
+    color: rgba(245, 243, 238, 0.9);
+    max-width: 52ch;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
+
+  .contact-cta__email {
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .contact-cta__email a {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
+  .contact-cta__email a:hover {
+    color: var(--color-white);
+  }
+
+  .contact-cta__action {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+</style>

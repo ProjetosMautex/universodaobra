@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout
+  title="Termos de Uso"
+  description="Leia os Termos de Uso do portal Universo da Obra sobre a finalidade informativa dos conteúdos, propriedade intelectual e uso adequado do site."
+>
+  <section class="page-header">
+    <div class="container-narrow">
+      <span class="page-header__eyebrow">Condições de Utilização</span>
+      <h1 class="page-header__title">Termos de Uso</h1>
+      <p class="page-header__lead">
+        Conheça as condições para navegação e consulta dos conteúdos informativos disponibilizados
+        no portal Universo da Obra.
+      </p>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="container-narrow">
+      <div class="prose-card prose-content">
+        <div class="review-notice">
+          <strong>Nota sobre este documento:</strong> Este texto constitui uma versão inicial clara
+          e editável dos Termos de Uso do Universo da Obra, preparada para revisão pelo responsável
+          pelo portal antes da publicação definitiva.
+        </div>
+
+        <h2>1. Finalidade informativa do portal</h2>
+        <p>
+          O <strong>Universo da Obra</strong> tem finalidade exclusivamente informativa e
+          educacional, reunindo artigos, guias e comparativos sobre construção civil, materiais,
+          ferramentas, manutenção residencial e reforma.
+        </p>
+        <p>
+          Todo o conteúdo publicado visa auxiliar o leitor em sua pesquisa inicial, oferecendo
+          contexto geral sobre opções disponíveis no mercado.
+        </p>
+
+        <h2>2. Limitações razoáveis das informações publicadas</h2>
+        <p>
+          As informações disponibilizadas no portal não substituem projetos executivos, laudos
+          técnicos, acompanhamento de engenheiros, arquitetos, eletricistas, encanadores ou outros
+          profissionais habilitados, nem dispensam o cumprimento das normas técnicas vigentes e das
+          instruções oficiais dos fabricantes de cada produto ou ferramenta.
+        </p>
+        <p>
+          O Universo da Obra não garante resultados específicos em obras, reformas, manutenções ou
+          aplicações de produtos, uma vez que o desempenho real depende das condições estruturais de
+          cada imóvel, da preparação correta do local, do uso de equipamentos de proteção individual
+          (EPIs) e da execução adequada do serviço.
+        </p>
+
+        <h2>3. Uso adequado do conteúdo</h2>
+        <p>
+          Ao acessar o site, o visitante compromete-se a utilizá-lo de forma ética e lícita,
+          abstendo-se de praticar atos que possam comprometer a segurança, a disponibilidade ou a
+          integridade técnica das páginas e servidores do portal.
+        </p>
+
+        <h2>4. Propriedade intelectual</h2>
+        <p>
+          Salvo indicação em contrário, os textos originais, a identidade visual, o logotipo, as
+          ilustrações próprias e a organização editorial do Universo da Obra são protegidos pela
+          legislação aplicável de direitos autorais e propriedade intelectual.
+        </p>
+        <p>
+          É permitida a citação de trechos curtos com a devida atribuição de crédito e link para a
+          página original do portal, sendo vedada a reprodução integral ou redistribuição comercial
+          do conteúdo sem autorização prévia.
+        </p>
+
+        <h2>5. Links para sites externos</h2>
+        <p>
+          Os artigos e páginas podem conter links para sites de fabricantes, normas, lojas ou outras
+          fontes externas para complementar a leitura. O Universo da Obra não possui controle sobre
+          a disponibilidade, preços, estoque, políticas ou conteúdos de sites de terceiros.
+        </p>
+
+        <h2>6. Relações comerciais e links de afiliados</h2>
+        <p>
+          Futuramente, determinados conteúdos do portal poderão incluir links de programas de
+          afiliados ou indicações comerciais. Quando aplicável, eventual comissão recebida por
+          compras qualificadas não gera custo adicional ao visitante e contribui para a manutenção
+          editorial do projeto.
+        </p>
+
+        <h2>7. Atualização e alteração do conteúdo</h2>
+        <p>
+          Os conteúdos publicados no site, bem como estes Termos de Uso, podem ser atualizados,
+          revisados, complementados ou removidos a qualquer tempo, visando manter a qualidade e a
+          atualidade das informações do portal.
+        </p>
+
+        <h2>8. Canal de contato</h2>
+        <p>
+          Para dúvidas, sugestões ou comunicações sobre estes Termos de Uso, entre em contato pelo
+          e-mail informado no projeto:{' '}
+          <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

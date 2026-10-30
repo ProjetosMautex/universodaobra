@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<BaseLayout
+  title="Política de Privacidade"
+  description="Saiba como o Universo da Obra trata informações de navegação, preferências de cookies e comunicações enviadas pelos visitantes."
+>
+  <section class="page-header">
+    <div class="container-narrow">
+      <span class="page-header__eyebrow">Transparência e Dados</span>
+      <h1 class="page-header__title">Política de Privacidade</h1>
+      <p class="page-header__lead">
+        Entenda quais informações podem ser tratadas no Universo da Obra, como funcionam os cookies
+        e como você pode gerenciar suas preferências a qualquer momento.
+      </p>
+    </div>
+  </section>
+
+  <section class="prose-section">
+    <div class="container-narrow">
+      <div class="prose-card prose-content">
+        <div class="review-notice">
+          <strong>Nota sobre este documento:</strong> Este texto representa a estrutura inicial de
+          privacidade do portal Universo da Obra, alinhada às funcionalidades técnicas implementadas
+          nesta versão. Recomenda-se a revisão pelo responsável pelo site antes da publicação
+          definitiva, bem como a confirmação de que o e-mail de contato está ativo.
+        </div>
+
+        <h2>1. Informações que podem ser coletadas</h2>
+        <p>
+          O <strong>Universo da Obra</strong> é um portal de conteúdo informativo. A leitura das
+          páginas não exige cadastro prévio. Durante a utilização do site, informações podem ser
+          tratadas nas seguintes situações:
+        </p>
+        <ul>
+          <li>
+            <strong>Contato direto por e-mail:</strong> quando você envia voluntariamente uma
+            mensagem para o nosso endereço de contato, recebemos os dados presentes na sua
+            comunicação (como seu nome, endereço de e-mail e o conteúdo da mensagem) exclusivamente
+            para responder à sua solicitação.
+          </li>
+          <li>
+            <strong>Dados técnicos de acesso:</strong> servidores de hospedagem registram
+            automaticamente dados técnicos padrão de requisição (como navegador utilizado, data,
+            horário e páginas requisitadas) para garantir a entrega segura das páginas e prevenir
+            falhas ou abusos.
+          </li>
+        </ul>
+
+        <h2>2. Tratamento de dados em eventuais formulários futuros</h2>
+        <p>
+          Na versão atual do site, não há formulários de cadastro ou captação ativa de dados
+          pessoais nas páginas. Caso formulários de contato ou boletins informativos sejam
+          implementados futuramente, os dados informados pelo visitante serão coletados apenas
+          mediante indicação clara da finalidade e utilizados estritamente para o atendimento
+          solicitado.
+        </p>
+
+        <h2>3. Como funcionam os cookies necessários e opcionais</h2>
+        <p>
+          Utilizamos armazenamento local no navegador e cookies divididos nas seguintes categorias:
+        </p>
+        <ul>
+          <li>
+            <strong>Necessários (sempre ativos):</strong> indispensáveis para o funcionamento básico
+            do site e para guardar a sua escolha no painel de consentimento de privacidade (chave
+            local <code>universodaobra_cookie_consent</code>), evitando que o aviso seja exibido
+            repetidamente a cada página visitada.
+          </li>
+          <li>
+            <strong>Analíticos (opcionais):</strong> quando autorizados pelo visitante, permitem
+            compreender de forma agregada como as páginas são visitadas para melhorar a organização
+            dos nossos guias.
+          </li>
+          <li>
+            <strong>Marketing (opcionais):</strong> quando autorizados pelo visitante, podem ser
+            utilizados para mensuração de campanhas ou recursos de recomendação comercial.
+          </li>
+        </ul>
+        <p>
+          Nenhum cookie ou script opcional de análise ou marketing é considerado aceito ou ativado
+          antes do consentimento explícito do visitante.
+        </p>
+
+        <h2>4. Como gerenciar suas preferências de cookies</h2>
+        <p>
+          Você pode aceitar todos os cookies, rejeitar os opcionais ou personalizar sua escolha a
+          qualquer momento. Para alterar uma decisão anterior, basta clicar no botão{' '}
+          <strong>"Preferências de Cookies"</strong> localizado na faixa inferior do rodapé de todas
+          as páginas ou utilizar o botão abaixo:
+        </p>
+        <p>
+          <button
+            type="button"
+            id="policy-open-cookie-btn"
+            class="btn btn-secondary"
+          >
+            Gerenciar preferências de cookies
+          </button>
+        </p>
+        <p>
+          Adicionalmente, você pode apagar os dados de navegação e cookies diretamente nas
+          configurações do seu navegador quando desejar.
+        </p>
+
+        <h2>5. Possíveis integrações futuras com ferramentas de análise</h2>
+        <p>
+          Na presente versão técnica, nenhuma ferramenta externa de rastreamento, pixel publicitário
+          ou serviço de analytics de terceiros encontra-se instalado e ativo por padrão. Caso
+          ferramentas de análise sejam integradas no futuro, elas respeitarão a configuração
+          registrada pelo visitante no painel de consentimento, e esta política será atualizada para
+          refletir os serviços utilizados.
+        </p>
+
+        <h2>6. Links de afiliados e relações comerciais</h2>
+        <p>
+          Os conteúdos do Universo da Obra poderão conter links para lojas, fabricantes ou programas
+          de afiliados para facilitar a consulta de materiais e ferramentas mencionados nos textos.
+          Quando você clica em um link externo e acessa outro site, passa a estar sujeito às
+          políticas de privacidade e termos daquele serviço externo.
+        </p>
+
+        <h2>7. Direitos do titular e canal de contato</h2>
+        <p>
+          Nos termos da legislação brasileira aplicável (incluindo a Lei Geral de Proteção de Dados
+          — LGPD, quando houver tratamento de dados pessoais), você pode solicitar informações sobre
+          o tratamento de dados enviados por você, bem como pedir a correção ou exclusão de
+          mensagens encaminhadas ao nosso canal de atendimento.
+        </p>
+        <p>
+          Para tratar de qualquer questão relacionada à privacidade, utilize o e-mail informado pelo
+          projeto:{' '}
+          <a href={`mailto:${SITE_CONFIG.contactEmail}`}>{SITE_CONFIG.contactEmail}</a>{' '}
+          <em>(sujeito à confirmação de ativação pelo responsável antes da publicação oficial)</em>.
+        </p>
+
+        <h2>8. Atualizações desta Política</h2>
+        <p>
+          Esta Política de Privacidade poderá ser revisada e atualizada periodicamente para refletir
+          melhorias no portal, novos recursos editoriais ou adequações normativas. Recomendamos a
+          consulta regular desta página.
+        </p>
+        <p>
+          <em>
+            [Espaço reservado para inclusão de dados complementares de identificação do responsável
+            pelo site e data de vigência final antes da publicação].
+          </em>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const setupPolicyCookieBtn = () => {
+    const btn = document.getElementById('policy-open-cookie-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      window.dispatchEvent(new CustomEvent('universodaobra:open-cookies'));
+    });
+  };
+
+  setupPolicyCookieBtn();
+  document.addEventListener('astro:page-load', setupPolicyCookieBtn);
+</script>

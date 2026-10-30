@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 375" width="600" height="375" fill="none">
+  <rect width="600" height="375" fill="#F5F3EE" />
+  <rect x="40" y="40" width="520" height="295" rx="12" fill="#FFFFFF" stroke="#E2E7E8" stroke-width="2" />
+  <!-- Caixa de ferramentas estilizada -->
+  <rect x="170" y="155" width="260" height="125" rx="10" fill="#173B46" />
+  <path d="M250 155V130C250 121.716 256.716 115 265 115H335C343.284 115 350 121.716 350 130V155" stroke="#173B46" stroke-width="8" stroke-linecap="round" />
+  <line x1="170" y1="205" x2="430" y2="205" stroke="#F5F3EE" stroke-width="3" />
+  <!-- Fecho laranja -->
+  <rect x="282" y="190" width="36" height="30" rx="5" fill="#E88735" />
+  <!-- Esquadro / Régua ao fundo -->
+  <path d="M125 280V95H160V245H275V280H125Z" fill="#E88735" fill-opacity="0.18" stroke="#E88735" stroke-width="3" />
+</svg>

@@ -1,0 +1,337 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { articles } from '../data/impermeabilizantearticles';
+
+const allArticles = [...articles];
+---
+
+<BaseLayout
+  title="Resultados da Busca"
+  description="Encontre análises, comparativos e guias sobre impermeabilizantes, materiais de construção e reforma no Universo da Obra."
+  noindex={true}
+>
+  <section class="search-hero">
+    <div class="container search-hero__inner">
+      <h1 class="search-hero__title">
+        Resultados para: <span id="search-query" class="search-hero__query">...</span>
+      </h1>
+      <p class="search-hero__subtitle">
+        Encontramos <span id="results-count" class="search-hero__count">0</span> resultado(s)
+      </p>
+    </div>
+  </section>
+
+  <section class="search-results-section">
+    <div class="container">
+      <div id="search-results" class="search-results-grid"></div>
+
+      <div id="no-results" class="search-no-results is-hidden">
+        <h2 class="search-no-results__title">Ops! Não encontramos nada.</h2>
+        <p class="search-no-results__text">
+          Tente pesquisar por termos como <strong>"Impermeabilizante"</strong>, <strong>"Laje"</strong>, <strong>"Argamassa"</strong> ou <strong>"Pintura"</strong>.
+        </p>
+        <a href="/" class="btn btn-primary">
+          Voltar para a Home
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ articles: allArticles }}>
+  const normalizeText = (text) =>
+    (text || '')
+      .toString()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
+  const escapeHtml = (str) =>
+    (str || '')
+      .toString()
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+  const runSearch = () => {
+    // 1. Pega o termo da URL (ex: ?q=impermeabilizante)
+    const params = new URLSearchParams(window.location.search);
+    const rawQuery = (params.get('q') || '').trim();
+    const normalizedQuery = normalizeText(rawQuery);
+
+    // 2. Elementos da página
+    const queryDisplay = document.getElementById('search-query');
+    const resultsCount = document.getElementById('results-count');
+    const resultsContainer = document.getElementById('search-results');
+    const noResults = document.getElementById('no-results');
+
+    if (!resultsContainer || !noResults) return;
+
+    if (queryDisplay) {
+      queryDisplay.textContent = rawQuery || 'Todos os artigos';
+    }
+
+    // 3. Filtra os artigos baseando-se no título ou no resumo (description / excerpt)
+    const searchWords = normalizedQuery.split(/\s+/).filter((w) => w.length > 0);
+
+    const filtered = articles.filter((article) => {
+      if (searchWords.length === 0) return true;
+      const summary = article.description || article.excerpt || '';
+      const textToSearch = normalizeText(article.title + ' ' + summary);
+      return searchWords.every((word) => textToSearch.includes(word));
+    });
+
+    // 4. Atualiza o contador
+    if (resultsCount) {
+      resultsCount.textContent = filtered.length.toString();
+    }
+
+    // 5. Renderiza os cards na tela
+    if (filtered.length > 0) {
+      resultsContainer.classList.remove('is-hidden');
+      noResults.classList.add('is-hidden');
+
+      resultsContainer.innerHTML = filtered
+        .map((item) => {
+          const title = escapeHtml(item.title);
+          const excerpt = escapeHtml(item.description || item.excerpt || '');
+          const image = escapeHtml(item.image);
+          const imageAlt = escapeHtml(item.imageAlt || item.title);
+          const hasRealUrl = Boolean(item.url && !item.isDemo);
+          const safeUrl = hasRealUrl ? escapeHtml(item.url) : '';
+
+          return `
+            <article class="search-card">
+              <div class="search-card__media">
+                <img
+                  src="${image}"
+                  alt="${imageAlt}"
+                  loading="lazy"
+                  class="search-card__img"
+                />
+              </div>
+              <div class="search-card__body">
+                <h3 class="search-card__title">
+                  ${
+                    hasRealUrl
+                      ? `<a href="${safeUrl}" class="search-card__title-link">${title}</a>`
+                      : `<span>${title}</span>`
+                  }
+                </h3>
+                <p class="search-card__excerpt">${excerpt}</p>
+                <div class="search-card__footer">
+                  ${
+                    hasRealUrl
+                      ? `<a href="${safeUrl}" class="search-card__cta">Ler análise completa →</a>`
+                      : `<span class="search-card__cta search-card__cta--preview">Conteúdo em preparação <span class="search-card__demo-tag">Prévia</span></span>`
+                  }
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join('');
+    } else {
+      resultsContainer.classList.add('is-hidden');
+      noResults.classList.remove('is-hidden');
+    }
+  };
+
+  runSearch();
+  document.addEventListener('astro:page-load', runSearch);
+</script>
+
+<style is:global>
+  .search-hero {
+    background-color: var(--color-primary);
+    padding: 3.5rem 0;
+    border-bottom: 4px solid var(--color-secondary);
+    text-align: center;
+  }
+
+  .search-hero__title {
+    color: var(--color-white);
+    font-size: clamp(1.75rem, 3.5vw + 0.5rem, 2.75rem);
+    font-weight: 900;
+    margin-bottom: 0.75rem;
+  }
+
+  .search-hero__query {
+    color: var(--color-secondary);
+  }
+
+  .search-hero__subtitle {
+    color: rgba(245, 243, 238, 0.85);
+    font-size: 1.0625rem;
+    margin: 0;
+  }
+
+  .search-hero__count {
+    font-weight: 800;
+    color: var(--color-white);
+  }
+
+  .search-results-section {
+    padding: 3.5rem 0 4.5rem;
+    background-color: var(--color-white);
+  }
+
+  .search-results-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .search-results-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .search-results-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+  }
+
+  .is-hidden {
+    display: none !important;
+  }
+
+  .search-no-results {
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    background-color: var(--color-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .search-no-results__title {
+    font-size: 1.65rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .search-no-results__text {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Cards de Resultado */
+  .search-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    height: 100%;
+    transition:
+      transform var(--transition-normal),
+      box-shadow var(--transition-normal),
+      border-color var(--transition-normal);
+  }
+
+  .search-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(23, 59, 70, 0.28);
+  }
+
+  .search-card__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background-color: var(--color-tertiary);
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  .search-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 350ms ease;
+  }
+
+  .search-card:hover .search-card__img {
+    transform: scale(1.04);
+  }
+
+  .search-card__body {
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .search-card__title {
+    font-size: 1.15rem;
+    line-height: 1.35;
+    color: var(--color-primary);
+    margin-bottom: 0.65rem;
+  }
+
+  .search-card__title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .search-card__title-link:hover {
+    color: var(--color-secondary-hover);
+    text-decoration: underline;
+  }
+
+  .search-card__excerpt {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .search-card__footer {
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: auto;
+  }
+
+  .search-card__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-secondary);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+
+  .search-card__cta:hover {
+    color: var(--color-secondary-hover);
+  }
+
+  .search-card__cta--preview {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .search-card__demo-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--color-tertiary);
+    color: var(--color-primary);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
+  }
+</style>

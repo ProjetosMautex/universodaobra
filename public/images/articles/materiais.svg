@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 375" width="600" height="375" fill="none">
+  <rect width="600" height="375" fill="#F5F3EE" />
+  <rect x="40" y="40" width="520" height="295" rx="12" fill="#FFFFFF" stroke="#E2E7E8" stroke-width="2" />
+  <!-- Blocos de alvenaria / revestimento -->
+  <rect x="140" y="100" width="145" height="65" rx="6" fill="#173B46" />
+  <rect x="305" y="100" width="145" height="65" rx="6" fill="#173B46" fill-opacity="0.8" />
+  <rect x="195" y="180" width="200" height="65" rx="6" fill="#E88735" />
+  <rect x="115" y="180" width="65" height="65" rx="6" fill="#173B46" fill-opacity="0.2" stroke="#173B46" stroke-width="3" />
+  <rect x="410" y="180" width="65" height="65" rx="6" fill="#173B46" fill-opacity="0.2" stroke="#173B46" stroke-width="3" />
+  <!-- Colher de pedreiro / linha de base -->
+  <line x1="115" y1="270" x2="475" y2="270" stroke="#173B46" stroke-width="5" stroke-linecap="round" />
+</svg>
