@@ -14,6 +14,11 @@ export const products: Record<string, Product> = {
     name: "Fundo Preparado Superfícies Impermeável Sika Impermur 4 Em 1",
     link: "https://meli.la/24iwpKu",
     image: "/images/produtos/Fundo Preparado Superfícies Impermeável Sika Impermur 4 Em 1.webp"
+  },
+  "Resina Acrílica Bautech 3,6L Brilhante Incolor Multiuso Alta Cobertura": {
+    name: "Resina Acrílica Bautech 3,6L Brilhante Incolor Multiuso Alta Cobertura",
+    link: "https://meli.la/1r7TzKn",
+    image: "/images/produtos/Resina Acrílica Bautech 3,6L Brilhante Incolor Multiuso Alta Cobertura.webp"
   }
 };
 
