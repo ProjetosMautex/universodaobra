@@ -5,15 +5,15 @@ export interface Product {
 }
 
 export const products: Record<string, Product> = {
-  "vedacit-vedapren-parede-18l": {
-    name: "Impermeabilizante Acrílico Vedacit Vedapren Parede 18L",
-    link: "https://meli.la/exemplo-vedapren-18l",
-    image: "/images/products/vedacit-vedapren-parede-18l.webp"
+  "Pintura Impermeável Vedacit Vedapren Parede Branco 18kg para Paredes Externas": {
+    name: "Pintura Impermeável Vedacit Vedapren Parede Branco 18kg para Paredes Externas",
+    link: "https://meli.la/2jKB6Ts",
+    image: "/images/produtos/Pintura Impermeável Vedacit Vedapren Parede Branco 18kg para Paredes Externas.webp"
   },
-  "sika-igolflex-branco-18kg": {
-    name: "Manta Líquida Impermeabilizante Sika Igolflex Branco 18kg",
-    link: "https://meli.la/exemplo-sika-igolflex-18kg",
-    image: "/images/products/sika-igolflex-branco-18kg.webp"
+  "pintura-impermeavel-vedacit-vedapren-parede-branco-18kg": {
+    name: "Pintura Impermeável Vedacit Vedapren Parede Branco 18kg para Paredes Externas",
+    link: "https://meli.la/2jKB6Ts",
+    image: "/images/produtos/Pintura Impermeável Vedacit Vedapren Parede Branco 18kg para Paredes Externas.webp"
   }
 };
 
