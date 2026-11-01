@@ -19,6 +19,11 @@ export const products: Record<string, Product> = {
     name: "Resina Acrílica Bautech 3,6L Brilhante Incolor Multiuso Alta Cobertura",
     link: "https://meli.la/1r7TzKn",
     image: "/images/produtos/Resina Acrílica Bautech 3,6L Brilhante Incolor Multiuso Alta Cobertura.webp"
+  },
+  "Massa Pronta Reboco Impermeável Quartzolit 20kg Cinza": {
+    name: "Massa Pronta Reboco Impermeável Quartzolit 20kg Cinza",
+    link: "https://meli.la/2Zg4R6H",
+    image: "/images/produtos/Massa Pronta Reboco Impermeável Quartzolit 20kg Cinza.webp"
   }
 };
 
