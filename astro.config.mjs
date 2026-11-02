@@ -2,6 +2,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import tailwindcss from '@tailwindcss/vite';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -35,6 +36,9 @@ function sitemapCompatibilityPlugin() {
 export default defineConfig({
   site: 'https://universodaobra.com',
   trailingSlash: 'always',
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     react(),
     sitemap({

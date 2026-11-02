@@ -1,29 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import type { ArticleItem } from '../../data/impermeabilizantearticles';
-import { getCollection } from 'astro:content';
-
-// Consulta a coleção de artigos reais publicada via Astro Content Collections
-const rawEntries = await getCollection('blog', ({ data }) => !data.draft);
-
-const publishedArticles: ArticleItem[] = rawEntries
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .map((entry) => ({
-    id: entry.id,
-    title: entry.data.title,
-    description: entry.data.description,
-    category: entry.data.category,
-    image: entry.data.image,
-    imageAlt: entry.data.imageAlt,
-    url: `/blog/${entry.id}/`,
-    date: entry.data.pubDate.toLocaleDateString('pt-BR', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric',
-    }),
-    isDemo: false,
-  }));
+import { articles } from '../../data/impermeabilizantearticles';
 ---
 
 <BaseLayout
@@ -44,10 +22,19 @@ const publishedArticles: ArticleItem[] = rawEntries
   <section class="blog-section">
     <div class="container">
       <!-- Grade de artigos ou Estado Vazio -->
-      {publishedArticles.length > 0 ? (
+      {articles.length > 0 ? (
         <div class="blog-grid">
-          {publishedArticles.map((article) => (
-            <ArticleCard {...article} />
+          {articles.map((article) => (
+            <ArticleCard
+              title={article.title}
+              description={article.description}
+              category={article.category}
+              image={article.image}
+              imageAlt={article.imageAlt}
+              url={article.url}
+              date={article.date}
+              isDemo={article.isDemo}
+            />
           ))}
         </div>
       ) : (

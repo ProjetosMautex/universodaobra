@@ -2,6 +2,8 @@
    Universo da Obra — Folha de Estilo Global e Sistema de Design
    ========================================================================== */
 
+@import "tailwindcss";
+
 :root {
   /* Paleta de Cores Principal */
   --color-primary: #173B46;         /* Azul-petróleo — confiança, estabilidade, profissionalismo */
@@ -44,91 +46,98 @@
   --transition-normal: 240ms ease;
 }
 
-/* Reset e Base */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  /* Reset e Base */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    background-color: var(--color-white);
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    color: var(--color-text);
+    overflow-x: hidden;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Tipografia Semântica Institucional (não interfere em artigos Tailwind .tw-article) */
+  :where(h1, h2, h3, h4, h5, h6):where(:not(.tw-article *)) {
+    font-family: var(--font-heading);
+    color: var(--color-primary);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  :where(h1):where(:not(.tw-article *)) {
+    font-size: clamp(1.875rem, 3.5vw + 0.5rem, 2.75rem);
+  }
+
+  :where(h2):where(:not(.tw-article *)) {
+    font-size: clamp(1.5rem, 2.5vw + 0.4rem, 2.125rem);
+  }
+
+  :where(h3):where(:not(.tw-article *)) {
+    font-size: clamp(1.175rem, 1.5vw + 0.3rem, 1.375rem);
+  }
+
+  :where(p):where(:not(.tw-article *)) {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  :where(p:last-child):where(:not(.tw-article *)) {
+    margin-bottom: 0;
+  }
+
+  :where(a):where(:not(.tw-article *)) {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition-fast);
+  }
+
+  :where(a:hover):where(:not(.tw-article *)) {
+    color: var(--color-secondary-hover);
+  }
+
+  /* Acessibilidade: Foco Visível */
+  :focus-visible {
+    outline: 3px solid var(--color-secondary);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
 }
 
-html {
-  font-family: var(--font-sans);
-  color: var(--color-text);
-  background-color: var(--color-white);
-  line-height: 1.6;
-  -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-white);
-  color: var(--color-text);
-  overflow-x: hidden;
-}
-
-main {
-  flex: 1;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-/* Tipografia Semântica */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  color: var(--color-primary);
-  line-height: 1.25;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-}
-
-h1 {
-  font-size: clamp(1.875rem, 3.5vw + 0.5rem, 2.75rem);
-}
-
-h2 {
-  font-size: clamp(1.5rem, 2.5vw + 0.4rem, 2.125rem);
-}
-
-h3 {
-  font-size: clamp(1.175rem, 1.5vw + 0.3rem, 1.375rem);
-}
-
-p {
-  margin-bottom: 1rem;
-  color: var(--color-text);
-}
-
-p:last-child {
-  margin-bottom: 0;
-}
-
-a {
-  color: var(--color-primary);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: color var(--transition-fast);
-}
-
-a:hover {
-  color: var(--color-secondary-hover);
-}
-
-/* Acessibilidade: Foco Visível */
-:focus-visible {
-  outline: 3px solid var(--color-secondary);
-  outline-offset: 3px;
-  border-radius: 3px;
+@layer components {
+  .tw-article .prose-lg {
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
 }
 
 /* Skip Link para Navegação por Teclado */
@@ -304,6 +313,12 @@ a:hover {
 }
 
 .prose-content ul {
+  list-style: disc;
+  margin: 0.75rem 0 1.25rem 1.25rem;
+}
+
+.prose-content ol {
+  list-style: decimal;
   margin: 0.75rem 0 1.25rem 1.25rem;
 }
 

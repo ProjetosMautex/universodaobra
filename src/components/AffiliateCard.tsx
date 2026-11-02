@@ -4,6 +4,7 @@ import {
   type Product,
   type ProductId,
 } from '../data/impermeabilizanteproducts';
+import { crossSellProducts } from '../data/crosssellproducts';
 import './AffiliateCard.css';
 
 const ShoppingCart: React.FC = () => (

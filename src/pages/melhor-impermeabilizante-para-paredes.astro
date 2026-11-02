@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { MelhorImpermeabilizanteParaParedes } from '../components/impermeabilizantes/MelhorImpermeabilizanteParaParedes';
+
+const title = 'Melhor Impermeabilizante para Paredes 12 Opções (2026)';
+const description =
+  'Cansado de mofo e infiltrações? Compare os melhores impermeabilizantes para parede (Vedacit, Sika, Quartzolit e mais) e escolha a proteção ideal!';
+const canonicalPath = '/melhor-impermeabilizante-para-paredes/';
+const ogImage = '/images/blog/melhor-impermeabilizante-para-paredes.webp';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  ogType="article"
+  ogImage={ogImage}
+>
+  <MelhorImpermeabilizanteParaParedes client:idle />
+</BaseLayout>

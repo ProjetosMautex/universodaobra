@@ -2,7 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ArticleGrid from '../components/ArticleGrid.astro';
-import { DEMO_ARTICLES } from '../data/impermeabilizantearticles';
+import { articles } from '../data/impermeabilizantearticles';
+
+const featuredArticles = articles.slice(0, 6);
 ---
 
 <BaseLayout
@@ -26,12 +28,12 @@ import { DEMO_ARTICLES } from '../data/impermeabilizantearticles';
     </div>
   </section>
 
-  <!-- Seção com seis cards de artigos -->
+  <!-- Seção com cards dos artigos mais recentes -->
   <ArticleGrid
     title="Explore nossos conteúdos"
     subtitle="Guias e informações para ajudar você em cada etapa da obra."
-    articles={DEMO_ARTICLES}
-    showDemoNotice={true}
+    articles={featuredArticles}
+    showDemoNotice={false}
   />
 </BaseLayout>
 

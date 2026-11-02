@@ -82,7 +82,22 @@ export const DEMO_ARTICLES: ArticleItem[] = [
   },
 ];
 
-export const articles = DEMO_ARTICLES;
+export const REAL_ARTICLES: ArticleItem[] = [
+  {
+    id: 'melhor-impermeabilizante-para-paredes',
+    title: 'Melhor Impermeabilizante para Paredes 12 Opções (2026)',
+    description:
+      'Cansado de mofo e infiltrações? Compare os melhores impermeabilizantes para parede (Vedacit, Sika, Quartzolit e mais) e escolha a proteção ideal!',
+    category: 'Impermeabilização',
+    image: '/images/blog/melhor-impermeabilizante-para-paredes.webp',
+    imageAlt: 'Parede protegida contra umidade e infiltrações com impermeabilizante',
+    url: '/melhor-impermeabilizante-para-paredes/',
+    date: '02 nov 2026',
+    isDemo: false,
+  },
+];
+
+export const articles: ArticleItem[] = REAL_ARTICLES;
 
 export const PLANNED_CATEGORIES = [
   'Impermeabilização',
