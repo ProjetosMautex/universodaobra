@@ -555,7 +555,8 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
               >
                 <img
                   src="/images/Autores/Guilherme Martins.webp"
-                  alt="Guilherme Martins"
+                  alt=""
+                  aria-hidden="true"
                   width={32}
                   height={32}
                   className="w-8 h-8 rounded-full border-2 border-[#E88735] group-hover:scale-110 transition-transform object-cover"
@@ -741,12 +742,13 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
               <tbody>
                 {showcaseItems.map((item) => {
                   const product = products[item.id];
+                  const thumbSrc = product.image.replace(/\.webp$/, '-thumb.webp');
                   return (
                     <tr key={item.anchorId} className="border-b border-slate-200 last:border-b-0 hover:bg-slate-50 transition-colors">
                       <td className="p-2 align-middle text-center">
                         <div className="w-[45px] h-[45px] sm:w-[60px] sm:h-[60px] border border-slate-100 rounded flex items-center justify-center p-0.5 bg-white mx-auto">
                           <img
-                            src={product.image}
+                            src={thumbSrc}
                             alt={item.shortName}
                             title={product.name}
                             width={60}
@@ -763,10 +765,10 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
                         >
                           {item.shortName}
                         </a>
-                        <div className="text-[11px] text-slate-500 mt-1 md:hidden">
+                        <div className="text-[11px] text-slate-600 mt-1 md:hidden">
                           {item.category}
                         </div>
-                        <div className="text-[11px] font-bold text-[#CF7122] mt-0.5 sm:hidden">
+                        <div className="text-[11px] font-bold text-[#173B46] mt-0.5 sm:hidden">
                           Nota: {item.score}
                         </div>
                       </td>
@@ -774,7 +776,7 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
                         {item.category}
                       </td>
                       <td className="p-2 align-middle text-center hidden sm:table-cell">
-                        <span className="bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                        <span className="bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                           {item.score}
                         </span>
                       </td>
@@ -903,7 +905,7 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
             {/* Recomendação Cross-Sell 1: Kit Rolo + Trincha */}
             <div className="bg-white p-5 rounded-xl border border-gray-200 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <span className="text-xs font-bold bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
+                <span className="text-xs font-bold bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
                   Mais Vendido
                 </span>
                 <div className="h-44 w-full flex items-center justify-center p-3 mb-4 bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">
@@ -934,7 +936,7 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
             {/* Recomendação Cross-Sell 2: Tela Poliéster */}
             <div className="bg-white p-5 rounded-xl border border-gray-200 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <span className="text-xs font-bold bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
+                <span className="text-xs font-bold bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
                   Reforço Estrutural
                 </span>
                 <div className="h-44 w-full flex items-center justify-center p-3 mb-4 bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">
@@ -965,7 +967,7 @@ export const MelhorImpermeabilizanteParaParedes: React.FC = () => {
             {/* Recomendação Cross-Sell 3: Fita Veda Trinca 3M Scotch */}
             <div className="bg-white p-5 rounded-xl border border-gray-200 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <span className="text-xs font-bold bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
+                <span className="text-xs font-bold bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
                   Vedação de Trincas
                 </span>
                 <div className="h-44 w-full flex items-center justify-center p-3 mb-4 bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">

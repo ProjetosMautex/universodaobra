@@ -90,24 +90,40 @@
  *      • `opacity-20 blur-sm` + camada `bg-gradient-to-b from-[#1a1a1a]/80 to-[#1a1a1a]`
  *        garantindo leitura perfeita e nota máxima de contraste (Acessibilidade 100).
  *
- * 4. IMAGENS DO CORPO E VITRINE (CLS = 0 E CARREGAMENTO RÁPIDO):
+ * 4. IMAGENS DO CORPO, VITRINE E AUTORES (CLS = 0 E CARREGAMENTO ULTRA RÁPIDO):
  *    - Todas as imagens abaixo da dobra DEVEM ter `loading="lazy"`.
  *    - Sempre defina `width` e `height` explícitos para travar a proporção e
  *      impedir saltos de layout (CLS = 0):
  *      • Imagens de seções e produtos: `width={800} height={533}`
- *      • Miniaturas da vitrine/tabela: `width={60} height={60}`
- *      • Foto do autor no topo: `width={32} height={32}`
+ *      • Miniaturas da vitrine/tabela: `width={60} height={60}` carregando a versão
+ *        compacta (`-thumb.webp` 120x120 ~1 a 2 KiB), evitando baixar a imagem de
+ *        800x533 para um espaço de 60x60 (economia de mais de 400 KiB no payload).
+ *      • Foto do autor no topo: `width={32} height={32}`, com arquivo fonte redimensionado
+ *        para no máximo 128x128 px (~3 KiB), nunca carregando arquivos 1024x1024 de 100 KiB.
  *    - Em fotos de produtos com fundo branco, use `object-contain mix-blend-multiply`.
  *    - Exclusivamente formato `.webp` (nunca `.png` ou `.jpg` em produção).
  *
- * 5. HIERARQUIA SEMÂNTICA E ACESSIBILIDADE (100 PONTOS):
+ * 5. HIERARQUIA SEMÂNTICA E ACESSIBILIDADE WCAG AA / AAA (100 PONTOS):
  *    - Apenas UM `<h1>` por página (dentro do Hero).
  *    - Respeite a ordem estrita de níveis: `<h1>` -> `<h2>` -> `<h3>` -> `<h4>`
  *      (jamais pule de `<h2>` direto para `<h4>`).
- *    - Contraste: Botões de ação (#E88735) (`bg-[#E88735]`) usam sempre texto escuro
- *      (`text-[#112228]` ou `text-slate-900`). Cores do portal seguem a paleta oficial:
- *      Azul Petróleo (`#173B46`), Laranja Queimado (`#E88735` / hover `#CF7122`),
- *      Bege Claro (`#FDF3EA`) e Escuro (`#0F2931`). Jamais use amarelo (#FFD700).
+ *    - Regras de Ouro de Contraste (Fundo da Vitrine, Badges e Botões):
+ *      • Fundo branco ou claro (`bg-white`, `bg-slate-50`): NUNCA use laranja claro
+ *        ou médio (`#CF7122` ou `#E88735`) para textos pequenos ou notas, pois a
+ *        relação de contraste cai abaixo de 4.5:1 e reprova no Lighthouse.
+ *      • SEMPRE use `text-[#173B46]` (Azul Petróleo profundo) para notas, categorias
+ *        e textos em superfícies claras, garantindo contraste de 10.5:1 (nível AAA).
+ *      • Badges e Selos (`bg-[#FDF3EA]`): use `text-[#173B46]` com borda `border-[#E88735]/40`
+ *        (contraste de 10.88:1, 100% acessível).
+ *      • Botões de ação (`bg-[#E88735]`): use sempre texto escuro (`text-[#112228]`
+ *        ou `text-slate-900`) com contraste superior a 7:1.
+ *      • Paleta oficial: Azul Petróleo (`#173B46`), Laranja Queimado (`#E88735` / hover `#CF7122`),
+ *        Bege Claro (`#FDF3EA`) e Escuro (`#0F2931`). Jamais use amarelo (#FFD700).
+ *    - Acessibilidade de Avatares (Evitar Alt Redundante):
+ *      • Quando a foto do autor estiver dentro de um link que já possui o nome textual do autor
+ *        (ex: `<a href="/autores/..."><img ... /> Guilherme Martins</a>`), a tag `<img>`
+ *        DEVE conter `alt="" aria-hidden="true"`. Isso impede que leitores de tela leiam
+ *        o nome do autor duas vezes consecutivas (regra `image-redundant-alt` do Lighthouse/Axe).
  *    - Links de afiliado sempre com `target="_blank" rel="noopener noreferrer sponsored nofollow"`.
  *
  * 6. TEXTO CORRIDO LIMPO (SEM NEGRITO NO MEIO DOS PARÁGRAFOS):
@@ -144,9 +160,11 @@
  *
  * 4. VITRINE / TABELA RESUMO DE PRODUTOS (QUANDO HOUVER ITENS RECOMENDADOS):
  *    - Mistura visual de tabela comparativa com vitrine de conversão rápida.
- *    - Colunas: Foto (`60x60`), Modelo/Opção (exibindo categoria e nota logo
- *      abaixo do nome no celular para não quebrar a tela), Categoria (desktop),
- *      Nota (`X.X / 10`) e botão na cor secundária (#E88735) `"Ver Preço"`.
+ *    - Colunas: Foto (`60x60` puxando `-thumb.webp` 120px para não sobrecarregar o LCP/payload),
+ *      Modelo/Opção, Categoria (desktop), Nota com alto contraste (`text-[#173B46]` ou
+ *      badge `bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40`) e botão `"Ver Preço"` (#E88735).
+ *    - No mobile: a nota fica logo abaixo do nome com `text-[#173B46] font-bold` (contraste 10.5:1
+ *      sobre o fundo branco da tabela, nunca usando laranja fraco no texto).
  *
  * 5. SEÇÕES DE CONTEÚDO E ANÁLISES DE PRODUTOS (`<h2>` e `<h3>`):
  *    - Seções informativas/contextuais (`<h2>` e `<h3>`): explicam conceitos,
@@ -520,7 +538,8 @@ export const GuiaPadraoArtigo: React.FC = () => {
               >
                 <img
                   src="/images/Autores/Guilherme Martins.webp"
-                  alt="Nome do Autor Especialista"
+                  alt=""
+                  aria-hidden="true"
                   width={32}
                   height={32}
                   className="w-8 h-8 rounded-full border-2 border-[#E88735] group-hover:scale-110 transition-transform object-cover"
@@ -656,13 +675,13 @@ export const GuiaPadraoArtigo: React.FC = () => {
                         </div>
                       </td>
                       <td className="p-2 align-middle">
-                        <a href={`#${item.anchorId}`} className="text-sm sm:text-base font-bold text-slate-800 hover:underline leading-tight block">
+                        <a href={`#${item.anchorId}`} className="text-sm sm:text-base font-bold text-[#173B46] hover:text-[#E88735] hover:underline leading-tight block">
                           {item.shortName}
                         </a>
-                        <div className="text-[11px] text-slate-500 mt-1 md:hidden">
+                        <div className="text-[11px] text-slate-600 mt-1 md:hidden">
                           {item.category}
                         </div>
-                        <div className="text-[11px] font-bold text-[#CF7122] mt-0.5 sm:hidden">
+                        <div className="text-[11px] font-bold text-[#173B46] mt-0.5 sm:hidden">
                           Nota: {item.score}
                         </div>
                       </td>
@@ -670,7 +689,7 @@ export const GuiaPadraoArtigo: React.FC = () => {
                         {item.category}
                       </td>
                       <td className="p-2 align-middle text-center hidden sm:table-cell">
-                        <span className="bg-[#FDF3EA] text-[#CF7122] text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
+                        <span className="bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 text-xs font-bold px-2 py-0.5 rounded-full whitespace-nowrap">
                           {item.score}
                         </span>
                       </td>
@@ -679,7 +698,7 @@ export const GuiaPadraoArtigo: React.FC = () => {
                           href={affiliateUrl}
                           target="_blank"
                           rel="noopener noreferrer sponsored nofollow"
-                          className="bg-[#E88735] text-[#1a1a1a] font-bold no-underline text-xs py-2 px-3 rounded whitespace-nowrap inline-block hover:opacity-90 transition-all sm:py-2.5 sm:px-5"
+                          className="bg-[#E88735] text-[#112228] hover:bg-[#CF7122] hover:text-white font-bold no-underline text-xs py-2 px-3 rounded whitespace-nowrap inline-block transition-all sm:py-2.5 sm:px-5"
                         >
                           Ver Preço
                         </a>
@@ -932,7 +951,7 @@ export const GuiaPadraoArtigo: React.FC = () => {
             {/* Card Cross-Sell 1 */}
             <div className="bg-white p-5 rounded-xl border border-gray-200 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <span className="text-xs font-bold bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
+                <span className="text-xs font-bold bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
                   Mais Vendido
                 </span>
                 <div className="h-44 w-full flex items-center justify-center p-3 mb-4 bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">
@@ -963,7 +982,7 @@ export const GuiaPadraoArtigo: React.FC = () => {
             {/* Card Cross-Sell 2 */}
             <div className="bg-white p-5 rounded-xl border border-gray-200 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <span className="text-xs font-bold bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
+                <span className="text-xs font-bold bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
                   Custo-Benefício
                 </span>
                 <div className="h-44 w-full flex items-center justify-center p-3 mb-4 bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">
@@ -994,7 +1013,7 @@ export const GuiaPadraoArtigo: React.FC = () => {
             {/* Card Cross-Sell 3 */}
             <div className="bg-white p-5 rounded-xl border border-gray-200 flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <span className="text-xs font-bold bg-[#FDF3EA] text-[#CF7122] border border-[#E88735]/30 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
+                <span className="text-xs font-bold bg-[#FDF3EA] text-[#173B46] border border-[#E88735]/40 py-1 px-3 rounded-full uppercase tracking-wider mb-3 inline-block">
                   Recomendado
                 </span>
                 <div className="h-44 w-full flex items-center justify-center p-3 mb-4 bg-slate-50/50 rounded-lg border border-slate-100 overflow-hidden">
