@@ -5,9 +5,9 @@ export interface NavLink {
 
 export const SITE_CONFIG = {
   name: 'Universo da Obra',
-  tagline: 'Informação prática para construir, reformar e cuidar melhor da sua casa.',
+  tagline: 'Guia especializado em impermeabilização, impermeabilizantes e combate à umidade.',
   description:
-    'Portal brasileiro de informação prática sobre construção, materiais, ferramentas, manutenção residencial e reforma.',
+    'Portal brasileiro de referência em impermeabilização residencial e predial: comparativos técnicos dos melhores impermeabilizantes, guias práticos e soluções definitivas contra infiltrações e mofo.',
   /**
    * Domínio pretendido configurado centralmente (provisório até ativação oficial).
    * Altere este valor e o astro.config.mjs quando o domínio definitivo estiver ativo.
